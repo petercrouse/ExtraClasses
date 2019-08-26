@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExtraClasses.Persistence.Migrations
 {
     [DbContext(typeof(ExtraClassesDbContext))]
-    [Migration("20190817182919_initial")]
+    [Migration("20190825155419_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,7 +23,7 @@ namespace ExtraClasses.Persistence.Migrations
 
             modelBuilder.Entity("ExtraClasses.Domain.Entities.Booking", b =>
                 {
-                    b.Property<long>("BookingId")
+                    b.Property<int>("BookingId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -31,7 +31,7 @@ namespace ExtraClasses.Persistence.Migrations
                         .HasConversion(new ValueConverter<decimal, decimal>(v => default(decimal), v => default(decimal), new ConverterMappingHints(precision: 38, scale: 17)))
                         .HasColumnType("money");
 
-                    b.Property<long>("ExtraClassId");
+                    b.Property<int>("ExtraClassId");
 
                     b.Property<int>("StudentId");
 
@@ -46,11 +46,9 @@ namespace ExtraClasses.Persistence.Migrations
 
             modelBuilder.Entity("ExtraClasses.Domain.Entities.ExtraClass", b =>
                 {
-                    b.Property<long>("ExtraClassId")
+                    b.Property<int>("ExtraClassId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CreatedById");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime");
@@ -59,8 +57,6 @@ namespace ExtraClasses.Persistence.Migrations
                         .HasColumnType("time(7)");
 
                     b.Property<bool>("IsClassFull");
-
-                    b.Property<int?>("ModifiedById");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -77,10 +73,6 @@ namespace ExtraClasses.Persistence.Migrations
                     b.Property<int?>("TeacherId");
 
                     b.HasKey("ExtraClassId");
-
-                    b.HasIndex("CreatedById");
-
-                    b.HasIndex("ModifiedById");
 
                     b.HasIndex("SubjectId");
 
@@ -172,15 +164,6 @@ namespace ExtraClasses.Persistence.Migrations
 
             modelBuilder.Entity("ExtraClasses.Domain.Entities.ExtraClass", b =>
                 {
-                    b.HasOne("ExtraClasses.Domain.Entities.Teacher", "CreatedBy")
-                        .WithMany("CreatedClasses")
-                        .HasForeignKey("CreatedById")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("ExtraClasses.Domain.Entities.Teacher", "ModifiedBy")
-                        .WithMany()
-                        .HasForeignKey("ModifiedById");
-
                     b.HasOne("ExtraClasses.Domain.Entities.Subject", "Subject")
                         .WithMany()
                         .HasForeignKey("SubjectId")

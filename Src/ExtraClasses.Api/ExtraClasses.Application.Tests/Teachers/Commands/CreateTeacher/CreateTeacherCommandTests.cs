@@ -13,7 +13,7 @@ namespace ExtraClasses.Application.Tests.Teachers.Commands.CreateTeacher
     public class CreateTeacherCommandTests : CommandTestBase
     {
         [Fact]
-        public async void CreateTeacherCommandHandler_ShouldRaiseStudentCreatedNotification()
+        public async void CreateTeacherCommandHandler_ShouldAddTeacherToContext()
         {
             // Arrange
             var sut = new CreateTeacherCommandHandler(_context);

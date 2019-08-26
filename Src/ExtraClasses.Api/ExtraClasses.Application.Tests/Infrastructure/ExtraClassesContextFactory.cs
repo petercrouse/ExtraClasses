@@ -34,12 +34,44 @@ namespace ExtraClasses.Application.Tests.Infrastructure
 
             context.Teachers.AddRange(new[]
             {
-                new Teacher {TeacherId = 1, LastName = "The Grey", FirstName = "Gandalf", Email="gandalf@wizzardcouncil.com"}
+                new Teacher {
+                    TeacherId = 1,
+                    LastName = "The Grey",
+                    FirstName = "Gandalf",
+                    Email ="gandalf@wizzardcouncil.com",
+                    TeachingSubjects = new List<TeacherSubject> {
+                        new TeacherSubject {
+                            TeacherId = 1,
+                            SubjectId = 1
+                        }
+                    }
+                },
+                new Teacher
+                {
+                    TeacherId = 2,
+                    LastName = "The White",
+                    FirstName = "Saruman",
+                    Email = "saurman@wizzardcouncil.com",
+                    TeachingSubjects = new List<TeacherSubject>
+                    {
+                        new TeacherSubject
+                        {
+                            TeacherId = 2,
+                            SubjectId = 2
+                        },
+                        new TeacherSubject
+                        {
+                            TeacherId = 2,
+                            SubjectId = 1
+                        }
+                    }
+                }
             });
 
             context.Subjects.AddRange(new[]
             {
-                new Subject {SubjectId = 1, Name = "Magic"}
+                new Subject {SubjectId = 1, Name = "Magic"},
+                new Subject {SubjectId = 2, Name = "Staff Logic"}
             });
 
             context.Bookings.AddRange(new[]
@@ -50,7 +82,7 @@ namespace ExtraClasses.Application.Tests.Infrastructure
 
             context.ExtraClasses.AddRange(new[]
             {
-                new ExtraClass {ExtraClassId = 1, TeacherId = 1, CreatedById = 1, SubjectId = 1, Size = 4, Duration = new TimeSpan(60,00,00), Price = 100, Date = new DateTime(2555,1,1), IsClassFull = false, Name = "How to be a wizzard"}
+                new ExtraClass {ExtraClassId = 1, TeacherId = 1, SubjectId = 1, Size = 4, Duration = new TimeSpan(60,00,00), Price = 100, Date = new DateTime(2555,1,1), IsClassFull = false, Name = "How to be a wizzard"}
             });
 
             context.SaveChanges();

@@ -2,8 +2,8 @@
 {
     public class Booking
     {
-        public long BookingId { get; set; }
-        public long ExtraClassId { get; set; }
+        public int BookingId { get; set; }
+        public int ExtraClassId { get; set; }
         public int StudentId { get; set; }
         public double BookingPrice { get; set; }
 

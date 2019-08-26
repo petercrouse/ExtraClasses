@@ -35,7 +35,7 @@ namespace ExtraClasses.Application.Tests.Teachers.Queries
 
             result.ShouldBeOfType<TeacherListViewModel>();
 
-            result.Teachers.Count().ShouldBe(1);
+            result.Teachers.Count().ShouldBe(2);
         }
     }
 }

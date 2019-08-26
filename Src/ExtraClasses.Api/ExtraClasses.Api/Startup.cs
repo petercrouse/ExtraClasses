@@ -5,6 +5,7 @@ using ExtraClasses.Application.Infrastructure.AutoMapper;
 using ExtraClasses.Application.Interfaces;
 using ExtraClasses.Application.Students.Commands.CreateStudent;
 using ExtraClasses.Application.Students.Queries.GetStudent;
+using ExtraClasses.Common;
 using ExtraClasses.Infrastructure;
 using ExtraClasses.Interfaces;
 using ExtraClasses.Persistence;
@@ -37,6 +38,7 @@ namespace ExtraClasses.Api
 
             // Add framework services.
             services.AddTransient<INotificationService, NotificationService>();
+            services.AddTransient<IDateTime, MachineDateTime>();
 
             // Add MediatR
             services.AddMediatR(typeof(GetStudentQueryHandler).GetTypeInfo().Assembly);

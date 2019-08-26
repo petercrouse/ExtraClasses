@@ -5,9 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ExtraClasses\" />
     <Folder Include="Bookings\" />
-    <Folder Include="Subjects\" />
+    <Folder Include="ExtraClasses\Queries\GetExtraClassList\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ExtraClasses.Common\ExtraClasses.Common.csproj" />
     <ProjectReference Include="..\ExtraClasses.Domain\ExtraClasses.Domain.csproj" />
   </ItemGroup>
 

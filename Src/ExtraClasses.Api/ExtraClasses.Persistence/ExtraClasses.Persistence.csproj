@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20190817182027_iitial.cs" />
     <Compile Remove="Migrations\20190817182027_iitial.Designer.cs" />
+    <Compile Remove="Migrations\20190825135718_replace_long_PK_with_int_in_ExtraClasses_and_Booking_tables.cs" />
+    <Compile Remove="Migrations\20190825135718_replace_long_PK_with_int_in_ExtraClasses_and_Booking_tables.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

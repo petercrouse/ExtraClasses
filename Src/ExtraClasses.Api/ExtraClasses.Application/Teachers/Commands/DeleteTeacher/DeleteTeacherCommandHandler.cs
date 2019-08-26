@@ -29,11 +29,11 @@ namespace ExtraClasses.Application.Teachers.Commands.DeleteTeacher
                 throw new NotFoundException(nameof(Teacher), request.Id);
             }
 
-            var teachesClasses = _context.ExtraClasses.Any(c => c.TeacherId == entity.TeacherId || c.CreatedById == entity.TeacherId);
+            var teachesClasses = _context.ExtraClasses.Any(c => c.TeacherId == entity.TeacherId);
 
             if (teachesClasses)
             {
-                throw new DeleteFailureException(nameof(Teacher), request.Id, "There are still classes created or taught by this teacher");
+                throw new DeleteFailureException(nameof(Teacher), request.Id, "There are still classes taught by this teacher");
             }
 
             _context.Teachers.Remove(entity);

@@ -52,7 +52,8 @@ namespace ExtraClasses.Persistence
         private void SeedSubjects(ExtraClassesDbContext context)
         {
             var subjects = new[] {
-                new Subject { Name = "Magic" }
+                new Subject { Name = "Magic" },
+                new Subject { Name = "Staff Logic"}
             };
 
             context.AddRange(subjects);
@@ -72,19 +73,37 @@ namespace ExtraClasses.Persistence
                             SubjectId = 1
                         }
                     }
+                },
+                new Teacher
+                {
+                    LastName = "The White",
+                    FirstName = "Saruman",
+                    Email = "saurman@wizzardcouncil.com",
+                    TeachingSubjects = new List<TeacherSubject>
+                    {
+                        new TeacherSubject
+                        {
+                            TeacherId = 2,
+                            SubjectId = 2
+                        },
+                        new TeacherSubject
+                        {
+                            TeacherId = 2,
+                            SubjectId = 1
+                        }
+                    }
                 }
             };
 
             context.AddRange(teachers);
             context.SaveChanges();
-        }       
+        }
 
         private void SeedExtraClasses(ExtraClassesDbContext context)
         {
             var classes = new[] {
                 new ExtraClass {
-                    TeacherId = 3,
-                    CreatedById = 3,
+                    TeacherId = 1,
                     SubjectId = 1,
                     Size = 4,
                     Duration = new TimeSpan(01, 00, 00),
@@ -95,21 +114,31 @@ namespace ExtraClasses.Persistence
                 },
                 new ExtraClass
                 {
-                    TeacherId = 3,
-                    CreatedById = 3,
-                    SubjectId = 1,
+                    TeacherId = 1,
+                    SubjectId = 2,
                     Size = 10,
                     Duration = new TimeSpan(01, 00, 00),
                     Price = 150,
                     Date = new DateTime(2556, 1, 1),
                     IsClassFull = false,
-                    Name = "Staff logic"
+                    Name = "Staff logic training"
+                },
+                new ExtraClass
+                {
+                    TeacherId = 2,
+                    SubjectId = 2,
+                    Size = 2,
+                    Duration = new TimeSpan(0,30,0),
+                    Price = 100,
+                    Date = new DateTime(2556, 3, 3),
+                    IsClassFull = false,
+                    Name = "How to fight orcs"
                 }
             };
 
             context.ExtraClasses.AddRange(classes);
             context.SaveChanges();
-            }
+        }
 
         private void SeedBookings(ExtraClassesDbContext context)
         {
@@ -119,6 +148,7 @@ namespace ExtraClasses.Persistence
             new Booking { StudentId = 2, ExtraClassId = 3, BookingPrice = 150 },
             new Booking { StudentId = 3, ExtraClassId = 2, BookingPrice = 100 },
             new Booking { StudentId = 3, ExtraClassId = 3, BookingPrice = 150 },
+            new Booking { StudentId = 1, ExtraClassId = 1, BookingPrice = 100 }
             };
 
             context.Bookings.AddRange(bookings);

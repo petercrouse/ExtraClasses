@@ -26,13 +26,6 @@ namespace ExtraClasses.Persistence.Configurations
                 .IsRequired()
                 .HasColumnType("money");
 
-            builder.Property(e => e.CreatedById)
-                .IsRequired();
-
-            builder.HasOne(e => e.CreatedBy)
-                .WithMany()
-                .HasForeignKey(e => e.CreatedById);
-
             builder.HasOne(e => e.Teacher)
                 .WithMany()
                 .HasForeignKey(e => e.TeacherId);

@@ -26,4 +26,8 @@
     <ProjectReference Include="..\ExtraClasses.Persistence\ExtraClasses.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ExtraClasses\Queries\" />
+  </ItemGroup>
+
 </Project>

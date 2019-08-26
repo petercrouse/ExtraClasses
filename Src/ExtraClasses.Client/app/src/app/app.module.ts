@@ -1,13 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './containers/app.component';
+import { AppRoutingModule } from '@_app/app-routing.module';
+import { AppComponent } from '@_app/containers/app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CoreModule } from './_core/core.module';
-import { SharedModule } from './_shared/shared.module';
-import { MenubarComponent } from './components/menubar/menubar.component';
-import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { CoreModule } from '@_core/core.module';
+import { MenubarComponent } from '@_app/components/menubar/menubar.component';
+import { SidenavComponent } from '@_app/components/sidenav/sidenav.component';
+import { SharedModule } from '@_shared/shared.module';
 
 @NgModule({
   declarations: [

@@ -10,7 +10,7 @@ namespace ExtraClasses.Domain.Entities
             Bookings = new HashSet<Booking>();
         }
 
-        public long ExtraClassId { get; set; }
+        public int ExtraClassId { get; set; }
         public string Name { get; set; }
         public DateTime Date { get; set; }
         public int? TeacherId { get; set; }
@@ -19,14 +19,10 @@ namespace ExtraClasses.Domain.Entities
         public TimeSpan Duration { get; set; }
         public int SubjectId { get; set; }
         public double Price { get; set; }
-        public int CreatedById { get; set; }
-        public int? ModifiedById { get; set; }
 
         public Subject Subject { get; set; }
-        public Teacher ModifiedBy { get; set; }
-        public Teacher CreatedBy { get; set; }
         public Teacher Teacher { get; set; }
 
-        public virtual ICollection<Booking> Bookings { get; set; }
+        public ICollection<Booking> Bookings { get; set; }
     }
 }

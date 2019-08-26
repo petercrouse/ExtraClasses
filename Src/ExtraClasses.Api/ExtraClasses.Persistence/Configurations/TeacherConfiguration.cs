@@ -14,10 +14,6 @@ namespace ExtraClasses.Persistence.Configurations
                 .WithOne(e => e.Teacher)
                 .HasForeignKey(e => e.TeacherId);
 
-            builder.HasMany(e => e.CreatedClasses)
-                .WithOne(e => e.CreatedBy)
-                .HasForeignKey(e => e.CreatedById);
-
             builder.HasMany(e => e.TeachingClasses)
                 .WithOne(e => e.Teacher)
                 .HasForeignKey(e => e.TeacherId);

@@ -8,7 +8,6 @@ namespace ExtraClasses.Domain.Entities
         {
             TeachingSubjects = new HashSet<TeacherSubject>();
             TeachingClasses = new HashSet<ExtraClass>();
-            CreatedClasses = new HashSet<ExtraClass>();
         }
 
         public int TeacherId { get; set; }
@@ -18,6 +17,5 @@ namespace ExtraClasses.Domain.Entities
 
         public ICollection<TeacherSubject> TeachingSubjects { get; set; }
         public ICollection<ExtraClass> TeachingClasses { get; set; }
-        public ICollection<ExtraClass> CreatedClasses { get; set; }
     }
 }

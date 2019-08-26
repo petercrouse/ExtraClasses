@@ -55,7 +55,7 @@ namespace ExtraClasses.Persistence.Migrations
                 name: "ExtraClass",
                 columns: table => new
                 {
-                    ExtraClassId = table.Column<long>(nullable: false)
+                    ExtraClassId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(maxLength: 30, nullable: false),
                     Date = table.Column<DateTime>(type: "datetime", nullable: false),
@@ -64,25 +64,11 @@ namespace ExtraClasses.Persistence.Migrations
                     IsClassFull = table.Column<bool>(nullable: false),
                     Duration = table.Column<TimeSpan>(type: "time(7)", nullable: false),
                     SubjectId = table.Column<int>(nullable: false),
-                    Price = table.Column<decimal>(type: "money", nullable: false),
-                    CreatedById = table.Column<int>(nullable: false),
-                    ModifiedById = table.Column<int>(nullable: true)
+                    Price = table.Column<decimal>(type: "money", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ExtraClass", x => x.ExtraClassId);
-                    table.ForeignKey(
-                        name: "FK_ExtraClass_Teacher_CreatedById",
-                        column: x => x.CreatedById,
-                        principalTable: "Teacher",
-                        principalColumn: "TeacherId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ExtraClass_Teacher_ModifiedById",
-                        column: x => x.ModifiedById,
-                        principalTable: "Teacher",
-                        principalColumn: "TeacherId",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ExtraClass_Subject_SubjectId",
                         column: x => x.SubjectId,
@@ -125,9 +111,9 @@ namespace ExtraClasses.Persistence.Migrations
                 name: "Booking",
                 columns: table => new
                 {
-                    BookingId = table.Column<long>(nullable: false)
+                    BookingId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ExtraClassId = table.Column<long>(nullable: false),
+                    ExtraClassId = table.Column<int>(nullable: false),
                     StudentId = table.Column<int>(nullable: false),
                     BookingPrice = table.Column<decimal>(type: "money", nullable: false)
                 },
@@ -157,16 +143,6 @@ namespace ExtraClasses.Persistence.Migrations
                 name: "IX_Booking_StudentId",
                 table: "Booking",
                 column: "StudentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ExtraClass_CreatedById",
-                table: "ExtraClass",
-                column: "CreatedById");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ExtraClass_ModifiedById",
-                table: "ExtraClass",
-                column: "ModifiedById");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ExtraClass_SubjectId",
@@ -199,10 +175,10 @@ namespace ExtraClasses.Persistence.Migrations
                 name: "Student");
 
             migrationBuilder.DropTable(
-                name: "Teacher");
+                name: "Subject");
 
             migrationBuilder.DropTable(
-                name: "Subject");
+                name: "Teacher");
         }
     }
 }
