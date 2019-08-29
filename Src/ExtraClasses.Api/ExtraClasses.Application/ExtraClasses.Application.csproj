@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Bookings\" />
-    <Folder Include="ExtraClasses\Queries\GetExtraClassList\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -2,12 +2,10 @@
 using ExtraClasses.Application.Interfaces.Mapping;
 using ExtraClasses.Domain.Entities;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace ExtraClasses.Application.ExtraClasses.Queries.GetExtraClass
+namespace ExtraClasses.Application.ExtraClasses.Queries.GetExtraClassList
 {
-    public class ExtraClassViewModel : IHaveCustomMapping
+    public class ExtraClassLookupModel :IHaveCustomMapping
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -21,7 +19,7 @@ namespace ExtraClasses.Application.ExtraClasses.Queries.GetExtraClass
 
         public void CreateMappings(Profile configuration)
         {
-            configuration.CreateMap<ExtraClass, ExtraClassViewModel>()
+            configuration.CreateMap<ExtraClass, ExtraClassLookupModel>()
                 .ForMember(cDTO => cDTO.Id, opt => opt.MapFrom(c => c.ExtraClassId))
                 .ForMember(cDTO => cDTO.SubjectName, opt => opt.MapFrom(c => c.Subject != null ? c.Subject.Name : string.Empty))
                 .ForMember(cDTO => cDTO.TeacherName, opt => opt.MapFrom(c => c.Teacher != null ? $"{c.Teacher.FirstName} {c.Teacher.LastName}" : string.Empty));
