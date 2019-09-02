@@ -71,7 +71,7 @@ namespace ExtraClasses.Api
                 };
             });
 
-            services.AddMvc(options => options.Filters.Add<OperationCancelledExceptionFilter>())
+            services.AddMvc(options => options.Filters.Add<CustomExceptionFilterAttribute>())
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateStudentCommandValidator>());
 
@@ -98,6 +98,7 @@ namespace ExtraClasses.Api
             }
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
 
             app.UseOpenApi();
             app.UseSwaggerUi3(settings =>
@@ -109,7 +110,7 @@ namespace ExtraClasses.Api
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller}/{action=Index}/{Id};");
+                    template: "{controller}/{action=Index}/{id?}");
             });
         }
     }

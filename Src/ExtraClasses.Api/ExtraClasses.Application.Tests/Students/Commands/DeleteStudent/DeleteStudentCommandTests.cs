@@ -1,12 +1,6 @@
 ﻿using ExtraClasses.Application.Exceptions;
 using ExtraClasses.Application.Students.Commands.DeleteStudent;
 using ExtraClasses.Application.Tests.Infrastructure;
-using MediatR;
-using Moq;
-using Shouldly;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using Xunit;
 

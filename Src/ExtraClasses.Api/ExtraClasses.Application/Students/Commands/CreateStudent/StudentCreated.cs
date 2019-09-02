@@ -1,8 +1,4 @@
-﻿using ExtraClasses.Domain.Entities;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using MediatR;
 
 namespace ExtraClasses.Application.Students.Commands.CreateStudent
 {

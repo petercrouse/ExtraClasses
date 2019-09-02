@@ -2,8 +2,6 @@
 using ExtraClasses.Application.Interfaces.Mapping;
 using ExtraClasses.Domain.Entities;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ExtraClasses.Application.ExtraClasses.Queries.GetExtraClass
 {

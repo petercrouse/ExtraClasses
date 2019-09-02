@@ -1,10 +1,7 @@
 ﻿using ExtraClasses.Application.Teachers.Commands.CreateTeacher;
 using ExtraClasses.Application.Tests.Infrastructure;
 using Shouldly;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using Xunit;
 

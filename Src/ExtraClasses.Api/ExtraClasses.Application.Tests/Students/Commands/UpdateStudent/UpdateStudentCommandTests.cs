@@ -2,9 +2,6 @@
 using ExtraClasses.Application.Students.Commands.UpdateStudent;
 using ExtraClasses.Application.Tests.Infrastructure;
 using Shouldly;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;

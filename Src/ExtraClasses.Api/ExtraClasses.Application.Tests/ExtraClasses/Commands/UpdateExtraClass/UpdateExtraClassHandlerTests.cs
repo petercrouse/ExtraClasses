@@ -2,8 +2,6 @@
 using ExtraClasses.Application.ExtraClasses.Commands.UpdateExtraClass;
 using ExtraClasses.Application.Tests.Infrastructure;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;

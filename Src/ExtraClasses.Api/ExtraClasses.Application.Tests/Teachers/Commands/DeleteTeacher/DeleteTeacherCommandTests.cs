@@ -1,9 +1,6 @@
 ﻿using ExtraClasses.Application.Exceptions;
 using ExtraClasses.Application.Teachers.Commands.DeleteTeacher;
 using ExtraClasses.Application.Tests.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using Xunit;
 

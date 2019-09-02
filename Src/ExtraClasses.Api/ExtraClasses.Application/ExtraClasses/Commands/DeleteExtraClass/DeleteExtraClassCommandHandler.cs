@@ -2,10 +2,8 @@
 using ExtraClasses.Domain.Entities;
 using ExtraClasses.Interfaces;
 using MediatR;
-using System;
-using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -24,14 +22,16 @@ namespace ExtraClasses.Application.ExtraClasses.Commands.DeleteExtraClass
 
         public async Task<Unit> Handle(DeleteExtraClassCommand request, CancellationToken cancellationToken)
         {
-            var entity = await _context.ExtraClasses.FindAsync(request.Id);
+            var entity = await _context.ExtraClasses.Where(c => c.ExtraClassId == request.Id)
+                                                    .Include(b => b.Bookings)
+                                                    .FirstOrDefaultAsync(cancellationToken);
 
             if (entity == null)
             {
                 throw new NotFoundException(nameof(ExtraClass), request.Id);
             }
 
-            var bookings = entity.Bookings.ToList();
+            var bookings = entity.Bookings;
 
             _context.ExtraClasses.Remove(entity);
 

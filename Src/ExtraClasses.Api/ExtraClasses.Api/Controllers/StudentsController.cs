@@ -5,9 +5,6 @@ using ExtraClasses.Application.Students.Queries.GetStudent;
 using ExtraClasses.Application.Students.Queries.GetStudentList;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ExtraClasses.Api.Controllers
@@ -20,7 +17,7 @@ namespace ExtraClasses.Api.Controllers
             return Ok(await Mediator.Send(new GetStudentListQuery()));
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<ActionResult<StudentDto>> Get(int id)
         {
             return Ok(await Mediator.Send(new GetStudentQuery { Id = id }));

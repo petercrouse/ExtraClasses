@@ -1,6 +1,5 @@
 ﻿using ExtraClasses.Interfaces;
 using ExtraClasses.Persistence;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

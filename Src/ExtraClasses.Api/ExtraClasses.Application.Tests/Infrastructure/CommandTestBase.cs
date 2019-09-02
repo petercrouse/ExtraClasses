@@ -1,7 +1,5 @@
 ﻿using ExtraClasses.Persistence;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ExtraClasses.Application.Tests.Infrastructure
 {

@@ -2,10 +2,8 @@
 using ExtraClasses.Application.Notifications.Models;
 using ExtraClasses.Domain.Entities;
 using MediatR;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -34,7 +32,6 @@ namespace ExtraClasses.Application.ExtraClasses.Commands.DeleteExtraClass
             };
 
             await _notificationService.SendAsync(message);
-
         }
 
         private string CreateBCCRecipients(List<Booking> bookings)

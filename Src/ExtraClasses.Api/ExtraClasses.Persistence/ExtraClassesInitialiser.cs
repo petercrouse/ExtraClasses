@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace ExtraClasses.Persistence
 {
@@ -41,8 +40,9 @@ namespace ExtraClasses.Persistence
             var students = new[]
             {
                 new Student { LastName = "Baggins", FirstName = "Frodo", Email = "fbaggins@theshire.com" },
-                new Student { LastName = "Baggins", FirstName = "Bilbo", Email = "bbaggins@theshire,com" },
+                new Student { LastName = "Baggins", FirstName = "Bilbo", Email = "bbaggins@theshire.com" },
                 new Student { LastName = "Gam Gee", FirstName = "Sam", Email = "sgamegee@theshire.com" },
+                new Student { LastName = "Brandybuck", FirstName = "Merry", Email = "mbrandybuck@theshire.com"}
             };
 
             context.Students.AddRange(students);
@@ -53,7 +53,8 @@ namespace ExtraClasses.Persistence
         {
             var subjects = new[] {
                 new Subject { Name = "Magic" },
-                new Subject { Name = "Staff Logic"}
+                new Subject { Name = "Staff Logic"},
+                new Subject { Name = "Dark Magic" }
             };
 
             context.AddRange(subjects);
@@ -91,6 +92,16 @@ namespace ExtraClasses.Persistence
                             TeacherId = 2,
                             SubjectId = 1
                         }
+                    }
+                },
+                new Teacher
+                {
+                    LastName = "Peredhel",
+                    FirstName = "Elrond",
+                    Email = "eperedhel@rivendell.com",
+                    TeachingSubjects = new List<TeacherSubject>
+                    {
+
                     }
                 }
             };

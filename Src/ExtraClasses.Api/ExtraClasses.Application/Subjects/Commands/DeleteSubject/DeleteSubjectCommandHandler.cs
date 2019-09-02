@@ -2,10 +2,7 @@
 using ExtraClasses.Domain.Entities;
 using ExtraClasses.Interfaces;
 using MediatR;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -34,7 +31,7 @@ namespace ExtraClasses.Application.Subjects.Commands.DeleteSubject
 
             if (taughtInClasses)
             {
-                throw new DeleteFailureException(nameof(Subject), request.Id, "There are still classes teaching this subject");
+                throw new DeleteFailureException(nameof(Subject), request.Id, "There are still classes hosting this subject");
             }
 
             if (taughtByTeacher)

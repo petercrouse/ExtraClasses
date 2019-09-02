@@ -1,7 +1,4 @@
-﻿using ExtraClasses.Application.Teachers.Queries.GetTeacher;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace ExtraClasses.Application.Teachers.Queries.GetTeacherList
 {

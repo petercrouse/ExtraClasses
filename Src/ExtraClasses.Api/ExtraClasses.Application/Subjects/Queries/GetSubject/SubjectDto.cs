@@ -1,8 +1,6 @@
 ﻿using ExtraClasses.Domain.Entities;
 using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace ExtraClasses.Application.Subjects.Queries.GetSubject
 {

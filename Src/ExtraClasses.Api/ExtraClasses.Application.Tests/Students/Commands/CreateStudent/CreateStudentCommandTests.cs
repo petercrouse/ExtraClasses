@@ -2,9 +2,6 @@
 using ExtraClasses.Application.Tests.Infrastructure;
 using MediatR;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using Xunit;
 

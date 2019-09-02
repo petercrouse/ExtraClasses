@@ -3,9 +3,8 @@ using ExtraClasses.Application.Extensions;
 using ExtraClasses.Domain.Entities;
 using ExtraClasses.Interfaces;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -22,7 +21,9 @@ namespace ExtraClasses.Application.ExtraClasses.Commands.UpdateExtraClass
 
         public async Task<Unit> Handle(UpdateExtraClassCommand request, CancellationToken cancellationToken)
         {
-            var entity = await _context.ExtraClasses.FindAsync(request.Id);
+            var entity = await _context.ExtraClasses.Where(c => c.ExtraClassId == request.Id)
+                                                    .Include(t => t.Teacher)
+                                                    .ThenInclude(s => s.TeachingSubjects).FirstOrDefaultAsync(cancellationToken);
 
             if(entity == null)
             {
@@ -40,6 +41,7 @@ namespace ExtraClasses.Application.ExtraClasses.Commands.UpdateExtraClass
             {
                 throw new TeacherDoesNotTeachSubjectException(teacher.TeacherId, request.SubjectId);
             }
+
 
             entity.Name = request.Name;
             entity.Date = request.Date;

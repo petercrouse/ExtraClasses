@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using ExtraClasses.Persistence;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace ExtraClasses.Application.Tests.Infrastructure

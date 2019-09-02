@@ -1,14 +1,10 @@
 ﻿using ExtraClasses.Application.Exceptions;
 using ExtraClasses.Application.Extensions;
-using ExtraClasses.Common;
 using ExtraClasses.Domain.Entities;
 using ExtraClasses.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -25,7 +21,9 @@ namespace ExtraClasses.Application.ExtraClasses.Commands.CreateExtraClass
 
         public async Task<int> Handle(CreateExtraClassCommand request, CancellationToken cancellationToken)
         {
-            var teacher = await _context.Teachers.FindAsync(request.TeacherId);
+            var teacher = await _context.Teachers.Where(t => t.TeacherId == request.TeacherId)
+                                                 .Include(ts => ts.TeachingSubjects)
+                                                 .FirstOrDefaultAsync(cancellationToken);
 
             if (teacher == null)
             {

@@ -1,8 +1,5 @@
 ﻿using AutoMapper;
 using ExtraClasses.Application.Infrastructure.AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ExtraClasses.Application.Tests.Infrastructure
 {

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace ExtraClasses.Domain.Entities
+﻿namespace ExtraClasses.Domain.Entities
 {
     public class Subject
     {
