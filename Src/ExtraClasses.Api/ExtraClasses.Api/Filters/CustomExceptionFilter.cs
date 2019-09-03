@@ -22,7 +22,6 @@ namespace ExtraClasses.Api.Filters
         {
             if (context.Exception is OperationCanceledException)
             {
-                _logger.LogInformation("Request was cancelled");
                 context.ExceptionHandled = true;
                 context.Result = new StatusCodeResult(400);
 
@@ -31,7 +30,6 @@ namespace ExtraClasses.Api.Filters
 
             if (context.Exception is ValidationException)
             {
-                _logger.LogError("Validation Exception");
                 context.HttpContext.Response.ContentType = "application/json";
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 context.Result = new JsonResult(((ValidationException)context.Exception).Failures);
@@ -39,18 +37,6 @@ namespace ExtraClasses.Api.Filters
                 return;
             }
 
-            if(context.Exception is TeacherDoesNotTeachSubjectException)
-            {
-                _logger.LogError("Teacher does not teach that subject exception");
-                context.HttpContext.Response.ContentType = "application/json";
-                context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                context.Result = GetJasonExceptionResult(context);
-
-                return;
-            }
-
-
-            _logger.LogError("Something went wrong");
             var code = HttpStatusCode.InternalServerError;
 
             if (context.Exception is NotFoundException)
@@ -58,7 +44,9 @@ namespace ExtraClasses.Api.Filters
                 code = HttpStatusCode.NotFound;
             }
 
-            if (context.Exception is TeacherDoesNotTeachSubjectException)
+            if (context.Exception is TeacherDoesNotTeachSubjectException || 
+                context.Exception is ClassSizeIsTooSmallForCurrentBookingsException ||
+                context.Exception is DoubleBookingException)
             {
                 code = HttpStatusCode.BadRequest;
             }

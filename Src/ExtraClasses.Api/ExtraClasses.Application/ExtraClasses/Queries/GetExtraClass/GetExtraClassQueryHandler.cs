@@ -3,6 +3,8 @@ using ExtraClasses.Application.Exceptions;
 using ExtraClasses.Domain.Entities;
 using ExtraClasses.Interfaces;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -21,14 +23,20 @@ namespace ExtraClasses.Application.ExtraClasses.Queries.GetExtraClass
 
         public async Task<ExtraClassViewModel> Handle(GetExtraClassQuery request, CancellationToken cancellationToken)
         {
-            var extraClass = _mapper.Map<ExtraClassViewModel>(await _context.ExtraClasses.FindAsync(request.Id));
+            var extraClass = _mapper.Map<ExtraClassDto>(await _context.ExtraClasses.Where(c => c.ExtraClassId == request.Id)
+                                                                                         .Include(t => t.Teacher)
+                                                                                         .Include(s => s.Subject)
+                                                                                         .FirstOrDefaultAsync(cancellationToken));
 
             if (extraClass == null)
             {
                 throw new NotFoundException(nameof(ExtraClass), request.Id);
             }
 
-            return extraClass;
+            return new ExtraClassViewModel
+            {
+                ExtraClass = extraClass
+            };
         }
     }
 }

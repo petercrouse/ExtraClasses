@@ -31,7 +31,7 @@ namespace ExtraClasses.Application.Tests.Students.Queries
 
             result.ShouldBeOfType<StudentListViewModel>();
 
-            result.Students.Count().ShouldBe(3);
+            result.Students.Count().ShouldBe(4);
         }
     }
 }

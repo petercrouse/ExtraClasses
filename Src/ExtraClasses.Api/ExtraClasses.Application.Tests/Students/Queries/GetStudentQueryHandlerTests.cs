@@ -1,4 +1,5 @@
-﻿using ExtraClasses.Application.Students.Queries.GetStudent;
+﻿using ExtraClasses.Application.Exceptions;
+using ExtraClasses.Application.Students.Queries.GetStudent;
 using ExtraClasses.Application.Tests.Infrastructure;
 using ExtraClasses.Persistence;
 using Shouldly;
@@ -25,8 +26,17 @@ namespace ExtraClasses.Application.Tests.Students.Queries
 
             var result = await sut.Handle(new GetStudentQuery { Id = 1 }, CancellationToken.None);
 
-            result.ShouldBeOfType<StudentDto>();
-            result.Id.ShouldBe(1);
+            result.ShouldBeOfType<StudentViewModel>();
+            result.Student.Id.ShouldBe(1);
+        }
+
+        [Fact]
+        public async Task GetStudent_ThrowNotFoundException()
+        {
+            var sut = new GetStudentQueryHandler(_context);
+
+            //Assert
+            await Assert.ThrowsAnyAsync<NotFoundException>(async () => await sut.Handle(new GetStudentQuery { Id = 99 }, CancellationToken.None));
         }
     }
 }

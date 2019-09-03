@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ExtraClasses.Application.Students.Queries.GetStudent
 {
-    public class GetStudentQueryHandler : IRequestHandler<GetStudentQuery, StudentDto>
+    public class GetStudentQueryHandler : IRequestHandler<GetStudentQuery, StudentViewModel>
     {
         private readonly IExtraClassesDbContext _context;
 
@@ -16,7 +16,7 @@ namespace ExtraClasses.Application.Students.Queries.GetStudent
             _context = context;
         }
 
-        public async Task<StudentDto> Handle(GetStudentQuery request, CancellationToken cancellationToken)
+        public async Task<StudentViewModel> Handle(GetStudentQuery request, CancellationToken cancellationToken)
         {
             var entity = await _context.Students.FindAsync(request.Id);
 
@@ -25,7 +25,10 @@ namespace ExtraClasses.Application.Students.Queries.GetStudent
                 throw new NotFoundException(nameof(Student), request.Id);
             }
 
-            return StudentDto.Create(entity);
+            return new StudentViewModel
+            {
+                Student = StudentDto.Create(entity)
+            };               
         }
     }
 }

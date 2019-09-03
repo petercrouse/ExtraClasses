@@ -13,17 +13,13 @@ namespace ExtraClasses.Application.Tests.ExtraClasses.Commands.DeleteExtraClass
     public class DeleteExtraClassHandlerTests : CommandTestBase
     {
         [Fact]
-        public async Task DeleteExtraClassCommandHandler_ShouldRaiseExtraClassDeletedNotificationAsync()
+        public async Task DeleteExtraClassCommandHandler_GivenSuccessfulValidation_ShouldThrowDeleteFailureException()
         {
-            // Arrange
-            var mediatorMock = new Mock<IMediator>();
-            var sut = new DeleteExtraClassCommandHandler(_context, mediatorMock.Object);            
-
-            // Act
-            var result = await sut.Handle(new DeleteExtraClassCommand { Id = 1 }, CancellationToken.None);
+            //Arrange
+            var sut = new DeleteExtraClassCommandHandler(_context);
 
             // Assert
-            mediatorMock.Verify(m => m.Publish(It.Is<ExtraClassDeleted>(ed => ed.Bookings.FirstOrDefault().ExtraClassId == 1), It.IsAny<CancellationToken>()), Times.Once);
+            await Assert.ThrowsAsync<DeleteFailureException>(async () => await sut.Handle(new DeleteExtraClassCommand { Id = 1 }, CancellationToken.None));
         }
 
         [Fact]
@@ -31,7 +27,7 @@ namespace ExtraClasses.Application.Tests.ExtraClasses.Commands.DeleteExtraClass
         {
             // Arrange     
             var mediatorMock = new Mock<IMediator>();
-            var sut = new DeleteExtraClassCommandHandler(_context, mediatorMock.Object);            
+            var sut = new DeleteExtraClassCommandHandler(_context);            
 
             // Assert
             await Assert.ThrowsAsync<NotFoundException>(async () => await sut.Handle(new DeleteExtraClassCommand { Id = 99 }, CancellationToken.None));

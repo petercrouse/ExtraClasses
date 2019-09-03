@@ -22,7 +22,7 @@ namespace ExtraClasses.Application.ExtraClasses.Commands.CreateExtraClass
         public async Task<int> Handle(CreateExtraClassCommand request, CancellationToken cancellationToken)
         {
             var teacher = await _context.Teachers.Where(t => t.TeacherId == request.TeacherId)
-                                                 .Include(ts => ts.TeachingSubjects)
+                                                 .Include(s => s.TeachingSubjects)
                                                  .FirstOrDefaultAsync(cancellationToken);
 
             if (teacher == null)

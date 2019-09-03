@@ -6,6 +6,7 @@
         public int ExtraClassId { get; set; }
         public int StudentId { get; set; }
         public double BookingPrice { get; set; }
+        public bool Paid { get; set; }
 
         public Student Student { get; set; }
         public ExtraClass ExtraClass { get; set; }

@@ -23,25 +23,37 @@ namespace ExtraClasses.Application.ExtraClasses.Commands.UpdateExtraClass
         {
             var entity = await _context.ExtraClasses.Where(c => c.ExtraClassId == request.Id)
                                                     .Include(t => t.Teacher)
-                                                    .ThenInclude(s => s.TeachingSubjects).FirstOrDefaultAsync(cancellationToken);
+                                                    .Include(b => b.Bookings)
+                                                    .FirstOrDefaultAsync(cancellationToken);
 
-            if(entity == null)
+            if (entity == null)
             {
                 throw new NotFoundException(nameof(ExtraClass), request.Id);
             }
 
-            var teacher = await _context.Teachers.FindAsync(request.TeacherId);
+            Teacher teacher;
 
-            if (teacher == null)
+            if (entity?.TeacherId != request?.TeacherId)
             {
-                throw new NotFoundException(nameof(Teacher), request.TeacherId);
+                teacher = await _context.Teachers.Where(t => t.TeacherId == request.TeacherId)
+                                                 .Include(s => s.TeachingSubjects)
+                                                 .FirstOrDefaultAsync(cancellationToken);
+
+                if (teacher == null)
+                {
+                    throw new NotFoundException(nameof(Teacher), request.TeacherId);
+                }
+
+                if (!teacher.TeachSubject(request.SubjectId))
+                {
+                    throw new TeacherDoesNotTeachSubjectException(teacher.TeacherId, request.SubjectId);
+                }
             }
 
-            if (!teacher.TeachSubject(request.SubjectId))
+            if(entity.Bookings.Count > request.Size)
             {
-                throw new TeacherDoesNotTeachSubjectException(teacher.TeacherId, request.SubjectId);
+                throw new ClassSizeIsTooSmallForCurrentBookingsException(nameof(ExtraClass), entity.ExtraClassId, entity.Size, request.Size);
             }
-
 
             entity.Name = request.Name;
             entity.Date = request.Date;

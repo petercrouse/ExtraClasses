@@ -31,7 +31,7 @@ namespace ExtraClasses.WebUI.FunctionalTests.Controllers.ExtraClasses
 
             var ExtraClass = await Utilities.GetResponseContent<ExtraClassViewModel>(response);
 
-            Assert.Equal(id, ExtraClass.Id);
+            Assert.Equal(id, ExtraClass.ExtraClass.Id);
         }
 
         [Fact]

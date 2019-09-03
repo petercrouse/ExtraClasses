@@ -21,15 +21,15 @@ namespace ExtraClasses.WebUI.FunctionalTests.Controllers.ExtraClasses
         }
 
         [Fact]
-        public async Task GivenUpdateExtraClassCommand_ReturnsSuccessStatusCode()
+        public async Task GivenUpdateExtraClassCommand_ReturnsBadRequestStatusCode_AssignedTeacherDoesNotTeachSubject()
         {
             var command = new UpdateExtraClassCommand
             {
-                Id = 1,
-                TeacherId = 1,
+                Id = 2,
+                TeacherId = 3,
                 SubjectId = 2,
                 Size = 4,
-                Duration = new TimeSpan(60, 00, 00),
+                Duration = new TimeSpan(1, 00, 00),
                 Price = 100,
                 Date = new DateTime(2555, 1, 1),
                 Name = "Wizzard Stance"
@@ -39,7 +39,7 @@ namespace ExtraClasses.WebUI.FunctionalTests.Controllers.ExtraClasses
 
             var response = await _client.PutAsync($"/api/extraclasses/update/{command.Id}", content);
 
-            response.EnsureSuccessStatusCode();
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
         }
 
         [Fact]
@@ -51,7 +51,7 @@ namespace ExtraClasses.WebUI.FunctionalTests.Controllers.ExtraClasses
                 TeacherId = 1,
                 SubjectId = 1,
                 Size = 4,
-                Duration = new TimeSpan(60, 00, 00),
+                Duration = new TimeSpan(1, 00, 00),
                 Price = 100,
                 Date = new DateTime(2555, 1, 1),
                 Name = "Wizzard Stance"
@@ -73,7 +73,7 @@ namespace ExtraClasses.WebUI.FunctionalTests.Controllers.ExtraClasses
                 TeacherId = 1,
                 SubjectId = 1,
                 Size = 4,
-                Duration = new TimeSpan(60, 00, 00),
+                Duration = new TimeSpan(1, 00, 00),
                 Price = 100,
                 Date = new DateTime(2555, 1, 1),
                 Name = "Wizzard Stance"
@@ -95,7 +95,7 @@ namespace ExtraClasses.WebUI.FunctionalTests.Controllers.ExtraClasses
                 TeacherId = 999,
                 SubjectId = 1,
                 Size = 4,
-                Duration = new TimeSpan(60, 00, 00),
+                Duration = new TimeSpan(1, 00, 00),
                 Price = 100,
                 Date = new DateTime(2555, 1, 1),
                 Name = "Wizzard Stance"
@@ -108,5 +108,48 @@ namespace ExtraClasses.WebUI.FunctionalTests.Controllers.ExtraClasses
             Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
         }
 
+        [Fact]
+        public async Task GivenUpdateExtraClassCommandWithValidId_ReturnsSuccessStatusCode()
+        {
+            var command = new UpdateExtraClassCommand
+            {
+                Id = 1,
+                TeacherId = 2,
+                SubjectId = 1,
+                Size = 4,
+                Duration = new TimeSpan(1, 00, 00),
+                Price = 100,
+                Date = new DateTime(2555, 1, 1),
+                Name = "Wizzard Stance"
+            };
+
+            var content = Utilities.GetRequestContent(command);
+
+            var response = await _client.PutAsync($"/api/extraclasses/update/{command.Id}", content);
+
+            response.EnsureSuccessStatusCode();
+        }
+
+        [Fact]
+        public async Task GivenUpdateExtraClassCommandWithValidId_ReturnsBadRequestStatusCode_ForClassSizeIsTooSmallForCurrentBookings()
+        {
+            var command = new UpdateExtraClassCommand
+            {
+                Id = 2,
+                TeacherId = 1,
+                SubjectId = 1,
+                Size = 1,
+                Duration = new TimeSpan(1, 00, 00),
+                Price = 100,
+                Date = new DateTime(2555, 1, 1),
+                Name = "Wizzard Stance"
+            };
+
+            var content = Utilities.GetRequestContent(command);
+
+            var response = await _client.PutAsync($"/api/extraclasses/update/{command.Id}", content);
+
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        }
     }
 }

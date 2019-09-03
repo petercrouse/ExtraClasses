@@ -23,8 +23,4 @@
     <ProjectReference Include="..\ExtraClasses.Persistence\ExtraClasses.Persistence.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\Bookings\" />
-  </ItemGroup>
-
 </Project>

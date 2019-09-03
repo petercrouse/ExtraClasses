@@ -21,7 +21,7 @@ namespace ExtraClasses.WebUI.FunctionalTests.Controllers.Teachers
         }
 
         [Fact]
-        public async Task GivenId_ReturnsTeacherDto()
+        public async Task GivenId_ReturnsTeacherViewModel()
         {
             var id = 1;
 
@@ -29,9 +29,9 @@ namespace ExtraClasses.WebUI.FunctionalTests.Controllers.Teachers
 
             response.EnsureSuccessStatusCode();
 
-            var Teacher = await Utilities.GetResponseContent<TeacherDto>(response);
+            var teacher = await Utilities.GetResponseContent<TeacherViewModel>(response);
 
-            Assert.Equal(id, Teacher.Id);
+            Assert.Equal(id, teacher.Teacher.Id);
         }
 
         [Fact]

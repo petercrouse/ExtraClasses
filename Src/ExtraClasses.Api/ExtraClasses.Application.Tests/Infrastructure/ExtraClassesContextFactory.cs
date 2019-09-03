@@ -27,6 +27,7 @@ namespace ExtraClasses.Application.Tests.Infrastructure
                 new Student { StudentId = 1, LastName = "Baggins" , FirstName = "Frodo", Email = "fbaggins@theshire.com"},
                 new Student { StudentId = 2, LastName = "Baggins" , FirstName = "Bilbo", Email = "bbaggins@theshire,com"},
                 new Student { StudentId = 3, LastName = "Gam Gee" , FirstName = "Sam", Email = "sgamegee@theshire.com"},
+                new Student { StudentId = 4, LastName = "BrandyBuck", FirstName = "Merry", Email = "mbrandybuck@theshire.com"}
             });
 
             context.Teachers.AddRange(new[]
@@ -74,12 +75,16 @@ namespace ExtraClasses.Application.Tests.Infrastructure
             context.Bookings.AddRange(new[]
             {
                 new Booking {BookingId = 1, StudentId = 1, ExtraClassId = 1, BookingPrice = 100},
-                new Booking {BookingId = 2, StudentId = 2, ExtraClassId = 1, BookingPrice = 100}
+                new Booking {BookingId = 2, StudentId = 2, ExtraClassId = 1, BookingPrice = 100},
+                new Booking {BookingId = 3, StudentId = 4, ExtraClassId = 1, BookingPrice = 100},
+                new Booking {BookingId = 4, StudentId = 1, ExtraClassId = 3, BookingPrice = 100}
             });
 
             context.ExtraClasses.AddRange(new[]
             {
-                new ExtraClass {ExtraClassId = 1, TeacherId = 1, SubjectId = 1, Size = 4, Duration = new TimeSpan(60,00,00), Price = 100, Date = new DateTime(2555,1,1), IsClassFull = false, Name = "How to be a wizzard"}
+                new ExtraClass {ExtraClassId = 1, TeacherId = 1, SubjectId = 1, Size = 2, Duration = new TimeSpan(1,00,00), Price = 100, Date = new DateTime(2555,1,1), IsClassFull = true, Name = "How to be a wizzard"},
+                new ExtraClass {ExtraClassId = 2, TeacherId = 2, SubjectId = 2, Size = 4, Duration = new TimeSpan(1,00,00), Price = 100, Date = new DateTime(2555,1,1), IsClassFull = false, Name = "Staff Logic"},
+                new ExtraClass {ExtraClassId = 3, TeacherId = 2, SubjectId = 2, Size = 4, Duration = new TimeSpan(1,00,00), Price = 100, Date = new DateTime(2555,1,1), IsClassFull = true, Name = "Wizzard Magic"}
             });
 
             context.SaveChanges();

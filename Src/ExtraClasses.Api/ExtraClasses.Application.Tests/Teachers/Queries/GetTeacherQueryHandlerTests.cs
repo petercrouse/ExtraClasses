@@ -25,8 +25,8 @@ namespace ExtraClasses.Application.Tests.Teachers.Queries
 
             var result = await sut.Handle(new GetTeacherQuery { Id = 1 }, CancellationToken.None);
 
-            result.ShouldBeOfType<TeacherDto>();
-            result.Id.ShouldBe(1);
+            result.ShouldBeOfType<TeacherViewModel>();
+            result.Teacher.Id.ShouldBe(1);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace ExtraClasses.WebUI.FunctionalTests.Controllers.ExtraClasses
         [Fact]
         public async Task GivenId_ReturnsSuccessStatusCode()
         {
-            var validId = 3;
+            var validId = 4;
 
             var response = await _client.DeleteAsync($"/api/extraclasses/delete/{validId}");
 

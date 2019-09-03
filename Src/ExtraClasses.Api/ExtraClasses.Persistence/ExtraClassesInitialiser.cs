@@ -142,8 +142,19 @@ namespace ExtraClasses.Persistence
                     Duration = new TimeSpan(0,30,0),
                     Price = 100,
                     Date = new DateTime(2556, 3, 3),
-                    IsClassFull = false,
+                    IsClassFull = true,
                     Name = "How to fight orcs"
+                },
+                new ExtraClass
+                {
+                    TeacherId = 2,
+                    SubjectId = 2,
+                    Size = 2,
+                    Duration = new TimeSpan(0,30,0),
+                    Price = 100,
+                    Date = new DateTime(2556, 3, 3),
+                    IsClassFull = false,
+                    Name = "Dark Magic"
                 }
             };
 

@@ -29,7 +29,7 @@ namespace ExtraClasses.Application.Tests.ExtraClasses.Queries
             var result = await sut.Handle(new GetExtraClassQuery { Id = 1 }, CancellationToken.None);
 
             result.ShouldBeOfType<ExtraClassViewModel>();
-            result.Id.ShouldBe(1);
+            result.ExtraClass.Id.ShouldBe(1);
         }
     }
 }

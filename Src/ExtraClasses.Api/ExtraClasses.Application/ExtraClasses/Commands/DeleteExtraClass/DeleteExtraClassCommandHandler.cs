@@ -12,12 +12,10 @@ namespace ExtraClasses.Application.ExtraClasses.Commands.DeleteExtraClass
     public class DeleteExtraClassCommandHandler : IRequestHandler<DeleteExtraClassCommand, Unit>
     {
         private readonly IExtraClassesDbContext _context;
-        private readonly IMediator _mediator;
 
-        public DeleteExtraClassCommandHandler(IExtraClassesDbContext context, IMediator mediator)
+        public DeleteExtraClassCommandHandler(IExtraClassesDbContext context)
         {
             _context = context;
-            _mediator = mediator;
         }
 
         public async Task<Unit> Handle(DeleteExtraClassCommand request, CancellationToken cancellationToken)
@@ -31,13 +29,16 @@ namespace ExtraClasses.Application.ExtraClasses.Commands.DeleteExtraClass
                 throw new NotFoundException(nameof(ExtraClass), request.Id);
             }
 
-            var bookings = entity.Bookings;
+            var hasBookings = _context.Bookings.Any(b => b.ExtraClassId == entity.ExtraClassId);
+            if (hasBookings)
+            {
+                throw new DeleteFailureException(nameof(Student), request.Id, "There are exisiting bookings associated with this class");
+            }
 
+            //ToDo: decide on the best way to delete a class
             _context.ExtraClasses.Remove(entity);
 
             await _context.SaveChangesAsync(cancellationToken);
-
-            await _mediator.Publish(new ExtraClassDeleted { Bookings = bookings }, cancellationToken);
 
             return Unit.Value;
         }

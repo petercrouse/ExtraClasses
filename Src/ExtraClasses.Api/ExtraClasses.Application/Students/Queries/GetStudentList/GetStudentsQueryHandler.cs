@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using ExtraClasses.Application.Students.Queries.GetStudent;
 using ExtraClasses.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -23,7 +25,7 @@ namespace ExtraClasses.Application.Students.Queries.GetStudentList
         {
             return new StudentListViewModel
             {
-                Students = await _context.Students.ProjectTo<StudentLookupModel>(_mapper.ConfigurationProvider).ToListAsync(cancellationToken)
+                Students = await _context.Students.Select(x => StudentDto.Create(x)).ToListAsync(cancellationToken)
             };
         }
     }

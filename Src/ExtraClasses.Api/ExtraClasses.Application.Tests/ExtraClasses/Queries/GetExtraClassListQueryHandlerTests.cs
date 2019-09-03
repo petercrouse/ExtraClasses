@@ -31,7 +31,7 @@ namespace ExtraClasses.Application.Tests.ExtraClasses.Queries
 
             result.ShouldBeOfType<ExtraClassListViewModel>();
 
-            result.ExtraClasses.Count().ShouldBe(1);
+            result.ExtraClasses.Count().ShouldBe(3);
         }
     }
 }

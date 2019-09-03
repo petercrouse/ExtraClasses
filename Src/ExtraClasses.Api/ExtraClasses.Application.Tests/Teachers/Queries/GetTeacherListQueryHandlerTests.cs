@@ -25,7 +25,7 @@ namespace ExtraClasses.Application.Tests.Teachers.Queries
         [Fact]
         public async Task GetTeacherList()
         {
-            var sut = new GetTeachersQueryHandler(_context, _mapper);
+            var sut = new GetTeachersQueryHandler(_context);
 
             var result = await sut.Handle(new GetTeacherListQuery(), CancellationToken.None);
 

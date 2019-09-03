@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ExtraClasses.Application.Teachers.Queries.GetTeacher
 {
-    public class GetTeacherQueryHandler : IRequestHandler<GetTeacherQuery, TeacherDto>
+    public class GetTeacherQueryHandler : IRequestHandler<GetTeacherQuery, TeacherViewModel>
     {
         private readonly IExtraClassesDbContext _context;
 
@@ -16,7 +16,7 @@ namespace ExtraClasses.Application.Teachers.Queries.GetTeacher
             _context = context;
         }
 
-        public async Task<TeacherDto> Handle(GetTeacherQuery request, CancellationToken cancellationToken)
+        public async Task<TeacherViewModel> Handle(GetTeacherQuery request, CancellationToken cancellationToken)
         {
             var entity = await _context.Teachers.FindAsync(request.Id);
 
@@ -25,7 +25,10 @@ namespace ExtraClasses.Application.Teachers.Queries.GetTeacher
                 throw new NotFoundException(nameof(Teacher), request.Id);
             }
 
-            return TeacherDto.Create(entity);
+            return new TeacherViewModel
+            {
+                Teacher = TeacherDto.Create(entity)
+            };
         }
     }
 }

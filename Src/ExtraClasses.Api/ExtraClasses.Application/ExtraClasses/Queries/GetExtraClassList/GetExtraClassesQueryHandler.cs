@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using ExtraClasses.Application.ExtraClasses.Queries.GetExtraClass;
 using ExtraClasses.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +24,7 @@ namespace ExtraClasses.Application.ExtraClasses.Queries.GetExtraClassList
         {
             return new ExtraClassListViewModel
             {
-                ExtraClasses = await _context.ExtraClasses.ProjectTo<ExtraClassLookupModel>(_mapper.ConfigurationProvider).ToListAsync(cancellationToken)
+                ExtraClasses = await _context.ExtraClasses.ProjectTo<ExtraClassDto>(_mapper.ConfigurationProvider).ToListAsync(cancellationToken)
             };
         }
     }

@@ -25,7 +25,7 @@ namespace ExtraClasses.Application.Tests.Students.Commands.UpdateStudent
         }
 
         [Fact]
-        public async Task UpdateCustomerCommand_ShouldUpdateStudent()
+        public async Task UpdateStudentCommand_ShouldUpdateStudent()
         {
             //Arrange
             var sut = new UpdateStudentCommandHandler(_context);
