@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Bookings.WebUI.FunctionalTests.Controllers.Bookings
+namespace ExtraClasses.WebUI.FunctionalTests.Controllers.Bookings
 {
     public class Create : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
