@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "generate": "swagger-angular-generator -s src/api/scheme.json -d src/api/generated",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -22,7 +23,9 @@
     "@angular/platform-browser-dynamic": "~8.2.3",
     "@angular/router": "~8.2.3",
     "hammerjs": "^2.0.8",
+    "ng-swagger-gen": "^1.8.1",
     "rxjs": "~6.4.0",
+    "swagger-angular-generator": "^4.1.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },

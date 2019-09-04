@@ -18,7 +18,7 @@ namespace ExtraClasses.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<StudentDto>> Get(int id)
+        public async Task<ActionResult<StudentViewModel>> Get(int id)
         {
             return Ok(await Mediator.Send(new GetStudentQuery { Id = id }));
         }
