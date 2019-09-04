@@ -4,14 +4,16 @@ using ExtraClasses.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ExtraClasses.Persistence.Migrations
 {
     [DbContext(typeof(ExtraClassesDbContext))]
-    partial class ExtraClassesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190904095910_added_paid_column_to_bookings_entity")]
+    partial class added_paid_column_to_bookings_entity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
