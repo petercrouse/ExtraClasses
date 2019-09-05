@@ -3,6 +3,7 @@ using ExtraClasses.Application.Students.Commands.DeleteStudent;
 using ExtraClasses.Application.Students.Commands.UpdateStudent;
 using ExtraClasses.Application.Students.Queries.GetStudent;
 using ExtraClasses.Application.Students.Queries.GetStudentList;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace ExtraClasses.Api.Controllers
 {
     public class StudentsController : BaseController
     {
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<StudentListViewModel>> GetAll()
         {

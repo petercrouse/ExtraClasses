@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  extraclasses.api:
+    image: ${DOCKER_REGISTRY-}extraclassesapi
+    build:
+      context: .
+      dockerfile: ExtraClasses.Api/Dockerfile
